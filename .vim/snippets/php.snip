@@ -1,0 +1,105 @@
+snippet update
+        $uql = 'update ${1} set ${2} = ${3} where ${4} = ${5}';
+        deleteFrom(DB_NAME, $uql);
+
+snippet select
+        $sql = 'select * from ${1}';
+        $rst = selectData(DB_NAME, $sql);
+snippet phptemplate
+	<?php
+        require_once("master/prefix.php");
+        
+        print html('testtitle','<script type="text/javascript" src="listReader.js"></script>',$body);
+        ${1}
+	?>
+
+snippet mail
+        exec("nohup php -c '' '/var/www/Documents/mailmanager/mailcontroller.php' '".$madd."' '".$title."' '".$cont."' > /dev/null &");
+
+snippet nav
+        $body .= '<nav class="navbar navbar-fixed-top navbar-default" role="navigation">
+
+                        <div class="container-fluid">
+                                <div class="navbar-header">
+                                        <a class="navbar-brand" href="http://192.168.100.208/php/menu/">
+                                                <img alt="Brand" src="sun.png">
+                                        </a>
+                                </div>
+
+                                <div class="container-fluid">
+                                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                                                <ul class="nav navbar-nav">
+                                                        <li>　</li>
+                                                        <li class="active"><a href=""></a></li>
+                                                        <li class="      "><a href=""></a></li>
+                                                </ul>
+
+
+                                                <ul class="nav navbar-nav pull-right">
+                                                        <li><a href="">'.$_SESSION["login_name"].'さん</a></li>
+                                                </ul>
+
+                                        </div>
+                                </div>
+                        </div>
+                    </nav>  </div> </div> </div> </div><div style="height:80px;"></div>';
+
+
+
+snippet session
+        session_start();
+        $_SESSION['expires'] = time();
+        if ($_SESSION['expires'] < time() - 7) {
+            session_regenerate_id(true);
+            $_SESSION['expires'] = time();
+        }
+        
+        require_once("master/prefix.php");
+        
+        
+        
+        //セッションが存在するか確認してマスターページに飛ばす
+        $sql = "SELECT * FROM employee";
+        
+        $result = selectData('master',$sql);
+        
+        if (isset($_SESSION["login_name"])){
+            $sessionCounter = 0;
+            for($i = 0; $i < count($result); $i++) {
+              if ($_SESSION["login_name"] == $result[$i]["person_name"]){
+                $sessionCounter = $sessionCounter + 1;
+              }
+            }
+            if ($sessionCounter == 0){
+                header("Location: /workflow/index.php?goto=/qcmanager/index.php");
+                exit;
+            }
+        }else{
+            header("Location: /workflow/index.php?goto=/qcmanager/index.php");
+            exit;
+        }
+
+
+
+
+snippet body
+abbr phpbody
+        $body .= '${1}';
+
+snippet sql
+        
+        //接続
+        $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, 'test');
+        /* 接続状況をチェックします */
+        if ($mysqli->connect_errno) {
+                printf("Connect failed: %s\n", $mysqli->connect_error);
+                exit();
+        }
+        $result = $mysqli->query('begin') or die("クエリの送信に失敗しました。<br />SQL:".$sql);
+        $result = $mysqli->query($sql) or die("クエリの送信に失敗しました。<br />SQL:".$sql);
+        //$result = $mysqli->query('rollback') or die("クエリの送信に失敗しました。<br />SQL:".$sql);
+        $result = $mysqli->query('commit') or die("クエリの送信に失敗しました。<br />SQL:".$sql);
+
+        $mysqli->close();
+

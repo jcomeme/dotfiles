@@ -1,0 +1,12 @@
+
+snippet phptemplate
+	<?php
+        require_once("master/prefix.php");
+        
+        print html('testtitle','<script type="text/javascript" src="listReader.js"></script>',$body);
+        ${1}
+	?>
+
+snippet body
+abbr phpbody
+        $body = '${1}';

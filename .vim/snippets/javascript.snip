@@ -1,0 +1,42 @@
+snippet jquery
+abbr jqstart
+        $(function() {
+                /*place jQuery actions here*/
+                ${1}
+        });
+
+snippet     $#
+abbr        jqidevent
+        $('#${1}')
+
+
+snippet     $
+abbr        jqevent
+        $('${1}')
+
+
+snippet     $.
+abbr        jqclassevent
+        $('.${1}')
+
+
+snippet     jfc
+abbr        javascriptfunction
+        function ${1}(){
+                ${2}
+        }
+
+snippet     post
+abbr        jquerypost
+        $.post(
+                "${1}.php",
+                {
+                "${2}": ${3}
+                },
+                function(data){
+                }
+        );
+
+
+
+

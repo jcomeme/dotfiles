@@ -1,0 +1,5 @@
+snippet jquery
+        $(function() {
+                /*place jQuery actions here*/
+                ${1}
+        });
