@@ -101,6 +101,12 @@ call dein#add('Shougo/neocomplete.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('nanotech/jellybeans.vim')
 call dein#add('Shougo/unite.vim')
+call dein#add('itchyny/lightline.vim')
+call dein#add('tomlion/vim-solidity')
+call dein#add('othree/javascript-libraries-syntax.vim')
+call dein#add('leafgarland/typescript-vim')
+call dein#add('rizzatti/dash.vim')
+
 
 
 " You can specify revision/branch/tag.
@@ -119,6 +125,10 @@ if dein#check_install()
 endif
 
 
+
+
+
+
 "NeoComplete設定
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_ignore_case = 1
@@ -135,6 +145,17 @@ highlight PmenuSbar ctermbg=0 guibg=#d6d6d6
 
 
 let g:neosnippet#snippets_directory='~/.vim/snippets/'
+
+let g:used_javascript_libs = 'angularjs,angularui,jquery,underscore,backbone,vue,flux,react'
+
+
+"lightline設定
+let g:lightline = {
+      \  'colorscheme': 'jellybeans',
+      \}
+
+
+
 
 
 colorscheme jellybeans

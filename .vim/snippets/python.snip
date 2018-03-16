@@ -9,3 +9,23 @@ snippet flask
   if __name__ == '__main__':
     app.run(host='0.0.0.0')
 
+snippet tensorflow
+  import tensorflow as tf
+
+  const1 = tf.constant(2)
+  const2 = tf.constant(3)
+  add_op = tf.add(const1, const2)
+
+  with tf.Session() as sess:
+    result = sess.run(add_op)
+    print(result)
+
+
+
+  mul_op = tf.multiply(add_op, const2)
+
+  with tf.Session() as sess:
+    result, result2 = sess.run([mul_op, add_op])
+    print(result)
+    print(result2)
+
